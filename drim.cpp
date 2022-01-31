@@ -29,9 +29,6 @@ int main(int, char **)
 
 			cout << "input: ";
 			for (int i = 0; i < size; i++) {
-				if (buffer[i] == 0x1b) {
-					return 0;
-				}
 				cout << setw(2) << setfill('0') << hex << int(buffer[i]) << " ";
 			}
 			cout << endl;
