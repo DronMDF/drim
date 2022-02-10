@@ -5,4 +5,5 @@ PROJECT(drim)
 ADD_EXECUTABLE(
 	drim
 	drim.cpp
+	AnsiScreen.cpp
 )

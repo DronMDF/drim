@@ -1,4 +1,6 @@
 #pragma once
+#include <string>
+#include <vector>
 
 // Абстракция экрана.
 //
@@ -8,7 +10,7 @@ class Screen {
 public:
 	virtual ~Screen() = default;
 
-	std::tuple<int, int> size() const;
+	//std::tuple<int, int> size() const;
 	// Перерисовывается экран целиком.
-	void draw(const std::vector<std::string> &lines) const;
+	virtual void draw(const std::vector<std::string> &lines) const = 0;
 };
