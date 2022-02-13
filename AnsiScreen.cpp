@@ -3,14 +3,19 @@
 
 using namespace std;
 
-AnsiScreen::AnsiScreen()
+AnsiScreen::AnsiScreen(int maxx, int maxy)
+	: maxx(maxx), maxy(maxy)
 {
-	cout << "\x1b[47h" << flush; 	// Save screen
+	// Sctoll console state up.
+	for (int i = 1; i < maxy; i++) {
+		cout << endl;
+	}
 }
 
 AnsiScreen::~AnsiScreen()
 {
-	cout << "\x1b[47l" << flush;	// Restore screen
+	// return to console after editor screen
+	cout << "\x1b[999B" << endl;
 }
 
 void AnsiScreen::draw(const vector<string> &lines) const

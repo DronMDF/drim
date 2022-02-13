@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <iostream>
 #include <thread>
+#include <sys/ioctl.h>
 #include <sys/select.h>
 #include <termios.h>
 #include <unistd.h>
@@ -11,7 +12,17 @@ using namespace std;
 
 int main(int, char **)
 {
-	AnsiScreen screen;
+	winsize ws;
+	if (ioctl(1, TIOCGWINSZ, &ws) == -1) {
+		cerr << "Unable to determine screen size" << endl;
+		return -1;
+	}
+	if (ws.ws_col == 0) {
+		cerr << "Unable to determine screen size" << endl;
+		return -1;
+	}
+
+	AnsiScreen screen(ws.ws_col, ws.ws_row);
 	screen.draw({
 		"first",
 		"second",
