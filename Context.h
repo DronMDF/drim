@@ -9,10 +9,19 @@
 //
 // Несколько контекстов могут работать паралельно - и образуют Workspace...
 // Несколько документов к примеру.
+//
+// Полагаю, что тип контекста зависит от режима редактирования.
+// И влияет на то, какие кнопки ты можешь нажать.
+// В свете этого наверное методы по типам и не нужны.
+// Идея крутится в готове - не могу сообразить.
+//
+// STDIN точно не знает как будет использована та или иная кнопка.
+// Context вероятно знает.
 class Context {
 public:
 	virtual ~Context() = default;
 
-	std::shared_ptr<const Context> navigate(int dx, int dy) const;
-	std::shared_ptr<const Context> input(const std::string &text) const;
+	virtual std::shared_ptr<const Context> process(
+		const std::shared_ptr<const Event> &event
+	) const = 0;
 };

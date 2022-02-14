@@ -22,20 +22,14 @@ int main(int, char **)
 		return -1;
 	}
 
-	AnsiScreen screen(ws.ws_col, ws.ws_row);
-	screen.draw({
-		"first",
-		"second",
-		"third"
-	});
+	auto screen = make_shared<AnsiScreen>(ws.ws_col, ws.ws_row);
+	auto context = make_shared<MainContext>(screen);
 
-	this_thread::sleep_for(5s);
-
-	screen.draw({
-		"first new",
-		"second",
-		"third"
-	});
+	while (true) {
+		// Wait for event
+		event e;
+		context = context->process(e);
+	}
 
 	//struct termios raw;
 	//tcgetattr(STDIN_FILENO, &raw);
