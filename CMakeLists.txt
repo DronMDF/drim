@@ -6,4 +6,5 @@ ADD_EXECUTABLE(
 	drim
 	drim.cpp
 	AnsiScreen.cpp
+	MainContext.cpp
 )

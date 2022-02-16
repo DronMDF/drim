@@ -1,4 +1,5 @@
 #include <chrono>
+#include <memory>
 #include <iomanip>
 #include <iostream>
 #include <thread>
@@ -7,6 +8,8 @@
 #include <termios.h>
 #include <unistd.h>
 #include "AnsiScreen.h"
+#include "InputEventSource.h"
+#include "MainContext.h"
 
 using namespace std;
 
@@ -22,41 +25,20 @@ int main(int, char **)
 		return -1;
 	}
 
-	auto screen = make_shared<AnsiScreen>(ws.ws_col, ws.ws_row);
-	auto context = make_shared<MainContext>(screen);
+	const auto input = make_shared<const InputEventSource>();
+	const auto screen = make_shared<const AnsiScreen>(ws.ws_col, ws.ws_row);
+	shared_ptr<const Context> context = make_shared<const MainContext>(screen);
 
 	while (true) {
-		// Wait for event
-		event e;
-		context = context->process(e);
+		// Мы можем весь главный цикл крутить вокруг клавиатуры,
+		// Все операции ввода-вывода или аналитические выгружая в потоки.
+		// Хотя всеравно нужна возможность обрабатывать результаты прочих операций в данном контексте
+		// ПРИ ОТСУТСТВИИ НАЖАТИЙ НА КЛАВИШИ...
+		const auto events = input->event();
+		for (const auto &e : events) {
+			context = context->process(e);
+		}
 	}
-
-	//struct termios raw;
-	//tcgetattr(STDIN_FILENO, &raw);
-	//// Прикопать оригинальный, чтобы восстановить при выходе.
-	//raw.c_lflag &= ~(ECHO | ICANON);
-	//tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
-
-	//while (true) {
-	//	fd_set rfds;
-	//	FD_ZERO(&rfds);
-	//	FD_SET(STDIN_FILENO, &rfds);
-	//	int max_fd = STDIN_FILENO + 1;
-	//	if (select(max_fd + 1, &rfds, nullptr, nullptr, nullptr) == -1) {
-	//		continue;
-	//	}
-	//	
-	//	if (FD_ISSET(STDIN_FILENO, &rfds)) {
-	//		char buffer[1024];
-	//		int size = read(STDIN_FILENO, buffer, sizeof(buffer) - 1);
-
-	//		cout << "input: ";
-	//		for (int i = 0; i < size; i++) {
-	//			cout << setw(2) << setfill('0') << hex << int(buffer[i]) << " ";
-	//		}
-	//		cout << endl;
-	//	}
-	//}
 
 	return 0;
 }

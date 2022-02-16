@@ -1,4 +1,7 @@
 #include "MainContext.h"
+#include <vector>
+#include "Event.h"
+#include "InsertContextMatch.h"
 
 using namespace std;
 
@@ -17,13 +20,21 @@ shared_ptr<const Context> MainContext::process(const shared_ptr<const Event> &ev
 	//
 	// Но червь оптимизации гложет - это же будут аллокации...
 	// И довольно много... десятки?
-	const auto {
-		LEFT, <MoveContextFactory>(-1, 0)
-		RIGHT, <MoveContextFactrory>(+1, 0)
-		UP, <MoveContextFactrory>(0, -1) 
-		DOWN, <MoveContextFactrory>(0, +1) 
-		"i", <InsertContextFactory>(0, 0)
-	}
+	//const Matches matches(
+	const vector<shared_ptr<const Match>> matches = {
+		//LEFT, <MoveContextFactory>(-1, 0)
+		//RIGHT, <MoveContextFactrory>(+1, 0)
+		//UP, <MoveContextFactrory>(0, -1) 
+		//DOWN, <MoveContextFactrory>(0, +1) 
+		make_shared<InsertContextMatch>("a"),
+		make_shared<InsertContextMatch>("i")
+	};
 
-	return event->select(actions)->create(screen, x, y, doc);
+	// Здесь не хватает одного промежуточного звена.
+	// Не понятно как код из Event можно передать в метод создания.
+	// Мы же не можем залесь в Event и достать из него код.
+	//
+	// Но матч может сам являться хранителем, или даже создателем фабрики.
+	// А он получает содержимое евента.
+	return event->select(matches)->create(screen);
 }

@@ -13,6 +13,8 @@
 //   - Завершилась операция io
 //   - Изменился размер экрана
 
+class Context;
+
 class Event {
 	virtual ~Event() = default;
 
