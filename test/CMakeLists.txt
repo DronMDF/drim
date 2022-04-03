@@ -2,6 +2,10 @@
 ADD_EXECUTABLE(
 	drim_test
 	test.cpp
+	# Вспомогательные классы
+	DocumentText.cpp
+	# Тесты
+	EmptyDocumentTest.cpp
 )
 
 ADD_DEPENDENCIES(

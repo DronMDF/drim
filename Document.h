@@ -9,11 +9,16 @@
 // - Может быть буффер для ввода данных в документ, которые еще не приняты.
 // - Может быть декоратор с контекстной подсказкой... Или лучше их сюда не примешивать... :) Декораторы могут накладываться в контексте перед выводом
 
+// Документ должен уметь выдавать свое содержимое, попадающее во viewport.
+// viewport задается на входе.
+//
+// И я думаю, что текст удобнее хранить в u32string / uint32_t... их проще считать...
+
 class Document {
 public:
 	virtual ~Document() = default;
 
-	std::shared_ptr<const Document> undo() const;
-	std::shared_ptr<const Document> redo() const;
-	std::shared_ptr<const Document> input(const int x, const int y, const std::string &text) const;
+	//std::shared_ptr<const Document> undo() const;
+	//std::shared_ptr<const Document> redo() const;
+	//std::shared_ptr<const Document> input(const int x, const int y, const std::string &text) const;
 };
