@@ -2,9 +2,30 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.18)
 
 PROJECT(drim)
 
+INCLUDE(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup()
+
+SET(CMAKE_CXX_STANDARD 20)
+SET(CMAKE_CXX_STANDARD_REQUIRED True)
+
+INCLUDE(CTest)
+ENABLE_TESTING()
+
+ADD_LIBRARY(
+	drim_core
+	AnsiScreen.cpp
+	InputEventSource.cpp
+	MainContext.cpp
+)
+
 ADD_EXECUTABLE(
 	drim
 	drim.cpp
-	AnsiScreen.cpp
-	MainContext.cpp
 )
+
+TARGET_LINK_LIBRARIES(
+	drim
+	drim_core
+)
+
+ADD_SUBDIRECTORY(test)

@@ -1,4 +1,7 @@
 #include "InputEventSource.h"
+#include <termios.h>
+#include <unistd.h>
+#include <sys/select.h>
 
 using namespace std;
 
@@ -17,7 +20,7 @@ InputEventSource::~InputEventSource()
 	tcsetattr(STDIN_FILENO, TCSAFLUSH, original.get());
 }
 
-list<shared_ptr<const Event>> ImputEventSource::event() const
+list<shared_ptr<const Event>> InputEventSource::event() const
 {
 	fd_set rfds;
 	FD_ZERO(&rfds);
@@ -32,5 +35,5 @@ list<shared_ptr<const Event>> ImputEventSource::event() const
 		return {};
 	}
 
-	return {make_shared<InputEvent>(c)};
+	return {}; //{make_shared<InputEvent>(c)};
 }

@@ -5,6 +5,10 @@
 
 using namespace std;
 
+MainContext::MainContext(const shared_ptr<const Screen> &screen [[maybe_unused]])
+{
+}
+
 shared_ptr<const Context> MainContext::process(const shared_ptr<const Event> &event) const
 {
 	// Здесь должен быть диспетчер
@@ -26,8 +30,8 @@ shared_ptr<const Context> MainContext::process(const shared_ptr<const Event> &ev
 		//RIGHT, <MoveContextFactrory>(+1, 0)
 		//UP, <MoveContextFactrory>(0, -1) 
 		//DOWN, <MoveContextFactrory>(0, +1) 
-		make_shared<InsertContextMatch>("a"),
-		make_shared<InsertContextMatch>("i")
+		//make_shared<InsertContextMatch>("a"),
+		//make_shared<InsertContextMatch>("i")
 	};
 
 	// Здесь не хватает одного промежуточного звена.
@@ -36,5 +40,5 @@ shared_ptr<const Context> MainContext::process(const shared_ptr<const Event> &ev
 	//
 	// Но матч может сам являться хранителем, или даже создателем фабрики.
 	// А он получает содержимое евента.
-	return event->select(matches)->create(screen);
+	return {}; //event->select(matches)->create(screen);
 }
