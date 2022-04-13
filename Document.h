@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 // Document - это довольно широкое понятие.
 // В базовой сути - он хранит текстовый файл.
@@ -17,6 +18,9 @@
 class Document {
 public:
 	virtual ~Document() = default;
+
+	// Здесь будет over(view), но пока в нем нет необходимости
+	virtual std::string over() const = 0;
 
 	//std::shared_ptr<const Document> undo() const;
 	//std::shared_ptr<const Document> redo() const;

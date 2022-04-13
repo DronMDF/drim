@@ -16,8 +16,10 @@ INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR})
 ADD_LIBRARY(
 	drim_core
 	AnsiScreen.cpp
+	EmptyDocument.cpp
 	InputEventSource.cpp
 	MainContext.cpp
+	TextDocument.cpp
 )
 
 ADD_EXECUTABLE(

@@ -2,6 +2,7 @@
 #include <memory>
 #include <2out/2out.h>
 #include "EmptyDocumentTest.h"
+#include "TextDocumentTest.h"
 
 using namespace std;
 using namespace oout;
@@ -9,15 +10,8 @@ using namespace oout;
 int main(int, char **)
 {
 	const auto tests = SuiteTest(
-		make_shared<const MatchTest>(
-			make_shared<const StringText>("drim"),
-			make_shared<const EqualMatch>("drim")
-		),
-		make_shared<const MatchTest>(
-			make_shared<const SignedText>(sizeof(wchar_t)),
-			make_shared<const EqualMatch>("4")
-		),
-		make_shared<EmptyDocumentTest>()
+		make_shared<EmptyDocumentTest>(),
+		make_shared<TextDocumentTest>()
 	);
 
 	const shared_ptr<const Result> result = tests.result();

@@ -1,4 +1,5 @@
 #include "DocumentText.h"
+#include <Document.h>
 
 using namespace std;
 
@@ -11,5 +12,5 @@ DocumentText::DocumentText(
 
 string DocumentText::asString() const
 {
-	return {};
+	return document->over();
 }

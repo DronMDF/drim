@@ -6,6 +6,7 @@ ADD_EXECUTABLE(
 	DocumentText.cpp
 	# Тесты
 	EmptyDocumentTest.cpp
+	TextDocumentTest.cpp
 )
 
 ADD_DEPENDENCIES(
