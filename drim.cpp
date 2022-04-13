@@ -7,9 +7,9 @@
 #include <sys/select.h>
 #include <termios.h>
 #include <unistd.h>
-#include "AnsiScreen.h"
-#include "InputEventSource.h"
-#include "MainContext.h"
+#include <core/AnsiScreen.h>
+#include <core/InputEventSource.h>
+#include <core/MainContext.h>
 
 using namespace std;
 

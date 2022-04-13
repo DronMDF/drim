@@ -13,15 +13,6 @@ ENABLE_TESTING()
 
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR})
 
-ADD_LIBRARY(
-	drim_core
-	AnsiScreen.cpp
-	EmptyDocument.cpp
-	InputEventSource.cpp
-	MainContext.cpp
-	TextDocument.cpp
-)
-
 ADD_EXECUTABLE(
 	drim
 	drim.cpp
@@ -32,4 +23,5 @@ TARGET_LINK_LIBRARIES(
 	drim_core
 )
 
+ADD_SUBDIRECTORY(core)
 ADD_SUBDIRECTORY(test)

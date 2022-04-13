@@ -1,5 +1,5 @@
 #include "DocumentText.h"
-#include <Document.h>
+#include <core/Document.h>
 
 using namespace std;
 

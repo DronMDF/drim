@@ -1,8 +1,8 @@
 #include "EmptyDocumentTest.h"
 #include <2out/2out.h>
-#include <EmptyDocument.h>
+#include <core/EmptyDocument.h>
+#include <core/TotalView.h>
 #include "DocumentText.h"
-#include "TotalView.h"
 
 using namespace std;
 using namespace oout;

@@ -1,8 +1,8 @@
 #include "TextDocumentTest.h"
 #include <2out/2out.h>
-#include <TextDocument.h>
+#include <core/TextDocument.h>
+#include <core/TotalView.h>
 #include "DocumentText.h"
-#include "TotalView.h"
 
 using namespace std;
 using namespace oout;
