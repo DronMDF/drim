@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include <string>
 
 // Document - это довольно широкое понятие.
@@ -15,12 +16,14 @@
 //
 // И я думаю, что текст удобнее хранить в u32string / uint32_t... их проще считать...
 
+class View;
+
 class Document {
 public:
 	virtual ~Document() = default;
 
 	// Здесь будет over(view), но пока в нем нет необходимости
-	virtual std::string over() const = 0;
+	virtual std::string over(const std::shared_ptr<const View> &view) const = 0;
 
 	//std::shared_ptr<const Document> undo() const;
 	//std::shared_ptr<const Document> redo() const;

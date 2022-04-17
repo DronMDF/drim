@@ -12,5 +12,5 @@ DocumentText::DocumentText(
 
 string DocumentText::asString() const
 {
-	return document->over();
+	return document->over(view);
 }

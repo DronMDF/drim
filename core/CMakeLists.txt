@@ -5,7 +5,9 @@ ADD_LIBRARY(
 	AnsiScreen.cpp
 	EmptyDocument.cpp
 	InputEventSource.cpp
+	LineView.cpp
 	MainContext.cpp
 	TextDocument.cpp
+	TotalView.cpp
 )
 
