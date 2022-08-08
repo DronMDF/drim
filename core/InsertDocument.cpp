@@ -1,5 +1,6 @@
 #include "InsertDocument.h"
-#include "TotalView.h"
+#include <limits>
+#include "SelectView.h"
 
 using namespace std;
 
@@ -14,6 +15,17 @@ InsertDocument::InsertDocument(
 
 string InsertDocument::over(const shared_ptr<const View> &view) const
 {
-	// Наивная реализация для вставки в хвост
-	return document->over(make_shared<TotalView>()) + text; 
+	// @todo - view должен уметь включать один в другой.
+	//  Чтобы запросы к документу, не видимые через view вырождались в пустой view.
+	// @todo - никак не используется view
+	const auto prefix = document->over(
+		make_shared<SelectView>(Position{1, 1}, Position{line, pos})
+	);
+	const auto suffix = document->over(
+		make_shared<SelectView>(
+			Position{line, pos},
+			Position{numeric_limits<size_t>::max(), numeric_limits<size_t>::max()}
+		)
+	);
+	return prefix + text + suffix; 
 }

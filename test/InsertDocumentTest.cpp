@@ -21,6 +21,18 @@ InsertDocumentTest::InsertDocumentTest()
 			make_shared<TotalView>()
 		),
 		make_shared<EqualMatch>("Hello World"s)
+	),
+	make_shared<NamedTest>(
+		"Документ с вставленным в начало текстом"s,
+		make_shared<DocumentText>(
+			make_shared<InsertDocument>(
+				make_shared<TextDocument>("World"s),
+				1, 1,
+				"Hello "s
+			),
+			make_shared<TotalView>()
+		),
+		make_shared<EqualMatch>("Hello World"s)
 	)
 )
 {
