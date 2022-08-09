@@ -11,27 +11,40 @@ TextDocument::TextDocument(const string &text)
 
 string TextDocument::over(const shared_ptr<const View> &view) const
 {
-	const auto first = line_offset(view->from().line);
-	const auto last = line_offset(view->to().line);
-	return text.substr(first, last - first);
-}
-
-size_t TextDocument::line_offset(size_t line_no) const
-{
-	// line_no может быть сильно за пределами строки.
-	int n = 1;
-	const auto ln = find_if(
-		text.begin(),
-		text.end(),
-		[&](const auto &c){
-			if (n == line_no) {
-				return true;
-			}
-			if (c == '\n') {
-				n++;
-			}
-			return false;
+	const auto from = view->from();
+	auto ifrom = text.begin();
+	size_t n = 1;	// Номер строки
+	while (n < from.line) {
+		ifrom = find(ifrom, text.end(), '\n');
+		if (ifrom == text.end()) {
+			return {};
 		}
-	);
-	return distance(text.begin(), ln);
+		ifrom++;
+		n++;
+	}
+	int p = 1;
+	while (ifrom != text.end() && *ifrom != '\n' && p < from.pos) {
+		// todo: Не учитываем utf8
+		ifrom++;
+		p++;
+	}
+
+	const auto to = view->to();
+	auto ito = ifrom;
+	while (n < to.line) {
+		ito = find(ito, text.end(), '\n');
+		if (ito == text.end()) {
+			return {ifrom, ito};
+		}
+		ito++;
+		n++;
+		p = 1;
+	}
+	while (ito != text.end() && *ito != '\n' && p < to.pos) {
+		// todo: Не учитываем utf8
+		ito++;
+		p++;
+	}
+
+	return {ifrom, ito};
 }

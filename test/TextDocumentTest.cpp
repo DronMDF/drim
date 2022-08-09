@@ -1,6 +1,7 @@
 #include "TextDocumentTest.h"
 #include <2out/2out.h>
 #include <core/LineView.h>
+#include <core/SelectView.h>
 #include <core/TextDocument.h>
 #include <core/TotalView.h>
 #include "DocumentText.h"
@@ -25,6 +26,14 @@ TextDocumentTest::TextDocumentTest()
 			make_shared<LineView>(2)
 		),
 		make_shared<EqualMatch>("test2"s)
+	),
+	make_shared<NamedTest>(
+		"Выбор текста до позиции в строке"s,
+		make_shared<DocumentText>(
+			make_shared<TextDocument>("Hello"s),
+			make_shared<SelectView>(1, 1, 1, 2)
+		),
+		make_shared<EqualMatch>("H"s)
 	)
 )
 {

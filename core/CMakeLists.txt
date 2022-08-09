@@ -8,6 +8,7 @@ ADD_LIBRARY(
 	InsertDocument.cpp
 	LineView.cpp
 	MainContext.cpp
+	SelectView.cpp
 	TextDocument.cpp
 	TotalView.cpp
 )
