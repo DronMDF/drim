@@ -1,5 +1,6 @@
 #include "TextDocument.h"
 #include "View.h"
+#include "Position.h"
 
 using namespace std;
 
@@ -10,8 +11,8 @@ TextDocument::TextDocument(const string &text)
 
 string TextDocument::over(const shared_ptr<const View> &view) const
 {
-	const auto first = line_offset(view->from());
-	const auto last = line_offset(view->to());
+	const auto first = line_offset(view->from().line);
+	const auto last = line_offset(view->to().line);
 	return text.substr(first, last - first);
 }
 

@@ -1,17 +1,15 @@
 #pragma once
 #include <cstddef>
 
-// Может возникнуть необходимость предоставлять доступ к тексту как построчно
-// Со строки/позиции до строки/позиции.. (как selection)
-// Так и блочно. - прямоугольная область от до. Хотя необходимость последнего я еше не осознал.
+struct Position;
 
 class View {
 public:
 	virtual ~View() = default;
 
 	// Первая видимая строка
-	virtual size_t from() const = 0;
+	virtual Position from() const = 0;
 
 	// Последняя видимая строка
-	virtual size_t to() const = 0;
+	virtual Position to() const = 0;
 };

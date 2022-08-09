@@ -1,14 +1,15 @@
 #include "TotalView.h"
 #include <limits>
+#include "Position.h"
 
 using namespace std;
 
-size_t TotalView::from() const
+Position TotalView::from() const
 {
-	return 1;
+	return {1, 1};
 }
 
-size_t TotalView::to() const
+Position TotalView::to() const
 {
-	return numeric_limits<size_t>::max();
+	return {numeric_limits<size_t>::max(), numeric_limits<size_t>::max()};
 }

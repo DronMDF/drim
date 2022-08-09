@@ -1,6 +1,7 @@
 #include "LineView.h"
 #include <limits>
 #include <stdexcept>
+#include "Position.h"
 
 using namespace std;
 
@@ -17,12 +18,12 @@ LineView::LineView(size_t from)
 {
 }
 
-size_t LineView::from() const
+Position LineView::from() const
 {
-	return _from;
+	return {_from, 1};
 }
 
-size_t LineView::to() const
+Position LineView::to() const
 {
-	return _to;
+	return {_to, numeric_limits<size_t>::max()};
 }
