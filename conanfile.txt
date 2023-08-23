@@ -1,5 +1,0 @@
-[requires]
-2out/0.10@dronmdf/testing
-
-[generators]
-cmake

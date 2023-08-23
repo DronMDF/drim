@@ -1,4 +1,5 @@
 #include "TextDocument.h"
+#include <algorithm>
 #include "View.h"
 #include "Position.h"
 
