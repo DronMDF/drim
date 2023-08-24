@@ -2,6 +2,7 @@
 #include <memory>
 #include <2out/2out.h>
 #include "EmptyDocumentTest.h"
+#include "EventQueueTest.h"
 #include "InsertDocumentTest.h"
 #include "TextDocumentTest.h"
 
@@ -12,6 +13,7 @@ int main(int, char **)
 {
 	const auto tests = SuiteTest(
 		make_shared<EmptyDocumentTest>(),
+		make_shared<EventQueueTest>(),
 		make_shared<InsertDocumentTest>(),
 		make_shared<TextDocumentTest>()
 	);

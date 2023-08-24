@@ -5,4 +5,3 @@ class InsertDocumentTest final : public oout::dirty::Test {
 public:
 	InsertDocumentTest();
 };
-

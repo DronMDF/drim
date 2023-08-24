@@ -17,7 +17,10 @@
 class Context;
 
 class Event {
+public:
 	virtual ~Event() = default;
 
-	std::shared_ptr<const Context> on(const std::shared_ptr<const Context> &context) const;
+	virtual std::string id() const = 0;
+
+	virtual std::shared_ptr<const Context> on(const std::shared_ptr<const Context> &context) const = 0;
 };

@@ -7,6 +7,7 @@ ADD_EXECUTABLE(
 	DocumentText.cpp
 	# Тесты
 	EmptyDocumentTest.cpp
+	EventQueueTest.cpp
 	InsertDocumentTest.cpp
 	TextDocumentTest.cpp
 )

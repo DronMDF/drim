@@ -4,6 +4,7 @@ ADD_LIBRARY(
 	drim_core
 	AnsiScreen.cpp
 	EmptyDocument.cpp
+	EventQueue.cpp
 	InputEventSource.cpp
 	InsertDocument.cpp
 	LineView.cpp
@@ -12,4 +13,3 @@ ADD_LIBRARY(
 	TextDocument.cpp
 	TotalView.cpp
 )
-
